@@ -2,6 +2,7 @@ from llm.llm import llm
 import os
 from pathlib import Path
 
+# Fungsi untuk melihat folder workspace via tree
 def tree(path, prefix=""):
     path = Path(path)
 
