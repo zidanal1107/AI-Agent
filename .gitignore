@@ -1,0 +1,5 @@
+# Abaikan semua file dan folder di dalam workspace
+workspace/*
+
+# Jangan abaikan file .gitkeep agar foldernya tetap muncul di GitHub
+!workspace/.gitkeep
