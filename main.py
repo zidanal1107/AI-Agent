@@ -31,11 +31,20 @@ def main():
             print("Pilih goal dengan angka")
 
     if goal == 1:
-        user = input("Masukkan nama folder: ")
+        tree("workspace")
+        user = input("Masukkan lokasi folder dan nama folder (lokasi nama): ")
         print("Sedang membuat folder di workspace...")
 
+        try:
+            lokasi = user.split()[0]
+            nama = user.split()[1]
+        except:
+            print("ERROR: format yang anda masukkan salah")
+            return
+        
+        print("Sedang membuat folder")
         try: 
-            os.mkdir(f"workspace/{user}")
+            os.mkdir(f"workspace/{lokasi}/{nama}")
             print("Berhasil membuat folder")
         except FileExistsError:
             print("Folder sudah ada")
@@ -46,20 +55,22 @@ def main():
         print("Di atas adalah structur folder workspace")
         user = input("Mau buat file dimana dan nama nya apa (lokasi-file nama-file)? ")
 
-        lokasi_file = user.split()[0]
-        nama_file = user.split()[1]
-        if not lokasi_file and not nama_file:
-            print("Format yang anda masukkan salah")
-        else:
-            print("Sedang membuat file")
-            try:
-                with open(f"workspace/{lokasi_file}/{nama_file}", "w") as f:
-                    f.write("Ini file anda")
-                print("File berhasil dibuat")
-            except FileExistsError:
-                print("File sudah ada")
-            except Exception as e:
-                print(f"ERROR: {e}")
+        try:
+            lokasi_file = user.split()[0]
+            nama_file = user.split()[1]
+        except:
+            print("ERROR: format yang anda masukkan salah")
+            return
+        
+        print("Sedang membuat file")
+        try:
+            with open(f"workspace/{lokasi_file}/{nama_file}", "w") as f:
+                f.write("Ini file anda")
+            print("File berhasil dibuat")
+        except FileExistsError:
+            print("File sudah ada")
+        except Exception as e:
+            print(f"ERROR: {e}")
 
     # print("Berpikir...")
     # print(llm("halo"))
